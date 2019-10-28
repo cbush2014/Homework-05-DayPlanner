@@ -4,11 +4,34 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #planner{
-    background-color:#4aaaa5;
+    background-color:whitesmoke;
+    width: 700px;
 }
-#buttons{
-    background-color:#775bc6;
 
+.leftCol{
+    width: 75px;
+    height: 40px;
+    /* border-top-style:dotted ; */
+    border-bottom-style:dotted ;
+    padding: 2px;
+    margin: 2px;
+    float:left;
+}
+.savebtn{
+    width: 50px;
+    height: 40px;
+    border-style:solid;
+    padding: 2px;
+    margin: 2px;
+    float:right;
+}
+.hours{
+    width: 75%;
+    height: 40px;
+    border-style:solid;
+    padding: 2px;
+    margin: 2px;
+    /* float:left; */
 }
 .hour-button{
     color:darkmagenta;
