@@ -1,0 +1,26 @@
+h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+
+}
+
+#planner{
+    background-color:#4aaaa5;
+}
+#buttons{
+    background-color:#775bc6;
+
+}
+.hour-button{
+    color:darkmagenta;
+}
+
+.hour-button-color{
+    color: darkcyan;
+}
+
+#display {
+    margin-top: 70px;
+    height:500px;
+    width:700px;
+    margin-left: 50px;
+}

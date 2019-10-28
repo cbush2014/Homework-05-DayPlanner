@@ -1,12 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- link in Bootstrap CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="Assets/style.css" />
     <title>Day Planner</title>
 </head>
+
 <body>
-    <script src="./moment.js"></script>
+    <div class="container-fluid">
+        <!-- Content here -->
+        <h1>Work Day Scheduler</h1>
+        <h5>A simple calendar app for scheduling your work day</h5>
+        <h5>Thursday, September 5th</h5>
+
+        <div class="row">
+            <div class="col"></div>
+        </div>
+        <div class="row">
+            <div class="col"></div>
+        </div>
+
+        <div id="planner">this is the planner div</div>
+        <div id="buttons">buttons div</div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script> 
+        
+    <script src="Assets/moment.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            // custom code here
+            var workhours = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"];
+
+            for (var i = 1; i < 10; i++) {
+                var hourBtn = $("button");
+console.log(workhours[i]);
+                hourBtn.addClass("hour-button hour-button-color");
+
+                hourBtn.attr("data-houredit", workhours[i]);
+
+                hourBtn.text(workhours[i]);
+                // append each hour button to the "#buttons" div
+                $("#buttons").append(hourBtn);
+            }
+
+
+        });
+
+    </script>
 </body>
+
 </html>
