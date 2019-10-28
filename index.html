@@ -25,9 +25,9 @@
         <h1>Work Day Scheduler</h1>
         <h5>A simple calendar app for scheduling your work day</h5>
         <h5 id="headerDate"></h5>
-
-        <div id="planner"></div>
-
+        <div class="container">
+            <div id="planner"></div>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -65,12 +65,12 @@
             for (var i = 0; i < 9; i++) {
                 var rowDiv = $("<div>");
                 rowDiv.addClass("row");
-                $("#planner").append(rowDiv);
+                // $("#planner").append(rowDiv);
 
                 var hourDiv = $("<div>");
                 hourDiv.addClass("leftCol");
                 hourDiv.text(workhours[i]);
-                $("#planner").append(hourDiv);
+                // $("#planner").append(hourDiv);
 
                 // var hourBtn = $("<button>");
                 var hourBtn = $("<input>");
@@ -81,18 +81,23 @@
 
                 hourBtn.text(workhours[i]);
                 // append each hour button to the "#planner" div
-                $("#planner").append(hourBtn);
+                // $("#planner").append(hourBtn);
 
                 var saveBtn = $("<button>");
                 saveBtn.addClass("savebtn");
                 saveBtn.attr("data-savebtn", workhours[i]);
                 saveBtn.text("Save");
-                $("#planner").append(saveBtn);
+                // $("#planner").append(saveBtn);
+
+                rowDiv.append(hourDiv, hourBtn, saveBtn);
+                $("#planner").append(rowDiv);
+
             }
 
                 $(".hour-button").on("click", function(){
                     alert("you clicked the hours button"+$(this).attr("data-houredit"))
                     console.log(this);
+
                 });
 
                 
