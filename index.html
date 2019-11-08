@@ -45,6 +45,9 @@
             // custom code here
             var currentDateAndTime = Date(Date.now());// exp: Fri Oct 25 2019 17:40:56 GMT-0400 (Eastern Daylight Time)
             var currentHour = new Date().getHours();//Current hour in military time
+//testing
+currentHour = 12;
+
             console.log(currentDateAndTime);
             var d = new Date();
             var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -91,7 +94,15 @@
                 var hourBtn = $("<input>");
                 console.log(workhours[i]);
                 hourBtn.addClass("hour-button hours hour-button-color");
+                if (currentHour - 9 === i) {
+                    hourBtn.addClass("present"); //add class for present hour
 
+                } else if ( currentHour -9 < i) {
+                    hourBtn.addClass("past"); //add class for past hour
+                    
+                } else {
+                    hourBtn.addClass("future"); //add class for future
+                }
                 hourBtn.attr("data-houredit", workhours[i]);
 
                 hourBtn.text(workhours[i]);
@@ -99,9 +110,8 @@
                 // $("#planner").append(hourBtn);
 
                 var saveBtn = $("<button>");
-                saveBtn.addClass("savebtn");
+                saveBtn.addClass("savebtn fa fa-save rounded-right");
                 saveBtn.attr("data-savebtn", workhours[i]);
-                saveBtn.text("Save");
                 // $("#planner").append(saveBtn);
 
                 rowDiv.append(hourDiv, hourBtn, saveBtn);
@@ -130,7 +140,10 @@
 
         });
 
+
     </script>
+    <script src="https://kit.fontawesome.com/55a94f0e16.js" crossorigin="anonymous"></script>
+
 </body>
 
 </html>

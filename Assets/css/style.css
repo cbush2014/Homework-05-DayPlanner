@@ -27,6 +27,7 @@ input {
     padding: 2px;
     margin: 2px;
     float:right;
+    background-color: rgb(18, 140, 240);
 }
 .hours{
     width: 75%;
@@ -43,6 +44,22 @@ input {
 .hour-button-color{
     color: darkcyan;
 }
+
+.past {
+    background-color:rgb(161, 167, 170);
+    color: black;
+}
+.present {
+    background-color:rgb(243, 11, 11);
+    color: white;
+}
+
+.future {
+    background-color:rgb(19, 212, 84);
+    color: black;
+}
+
+
 
 #display {
     margin-top: 70px;
