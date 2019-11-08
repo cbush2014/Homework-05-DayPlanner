@@ -15,7 +15,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="Assets/style.css" />
+    <link rel="stylesheet" href="Assets/css/style.css" />
     <title>Day Planner</title>
 </head>
 
@@ -35,9 +35,9 @@
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script> 
-        
-    <script src="Assets/moment.js"></script>
+        crossorigin="anonymous"></script>
+
+    <script src="Assets/scripts/moment.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -47,22 +47,37 @@
             var currentHour = new Date().getHours();//Current hour in military time
             console.log(currentDateAndTime);
             var d = new Date();
-            var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+            var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
             var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
             //"Monday, October 28th";
             var ordinal = english_ordinal_suffix(d);
-            var dateString= days[d.getDay()] +", "+months[d.getMonth()]+" " +ordinal;
+            var dateString = days[d.getDay()] + ", " + months[d.getMonth()] + " " + ordinal;
             document.getElementById("headerDate").innerHTML = dateString;
 
-            function english_ordinal_suffix(dt)
-            {
-                return dt.getDate()+(dt.getDate() % 10 == 1 && dt.getDate() != 11 ? 'st' : (dt.getDate() % 10 == 2 && dt.getDate() != 12 ? 'nd' : (dt.getDate() % 10 == 3 && dt.getDate() != 13 ? 'rd' : 'th'))); 
+            function english_ordinal_suffix(dt) {
+                return dt.getDate() + (dt.getDate() % 10 == 1 && dt.getDate() != 11 ? 'st' : (dt.getDate() % 10 == 2 && dt.getDate() != 12 ? 'nd' : (dt.getDate() % 10 == 3 && dt.getDate() != 13 ? 'rd' : 'th')));
             }
-
 
             var workhours = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"];
 
+
+            var plannerArray = JSON.parse(localStorage.getItem('DayPlanner') || "[]");
+
+            var plannerEntry = {};
+            // plannerEntry.hour = workhours[i];
+            // plannerEntry.entry = hoursBtn
+
             for (var i = 0; i < 9; i++) {
+
+                //create entry in our array with the current hour and blank entry
+                var plannerEntry = {};
+                // plannerEntry.hour = $(this).attr("data-houredit");
+                // plannerEntry.entry = $(this).val().trim();
+                // plannerArray.push(plannerEntry);
+                plannerEntry.hour = workhours[i];
+                plannerEntry.entry = "";
+                plannerArray.push(plannerEntry);
+
                 var rowDiv = $("<div>");
                 rowDiv.addClass("row");
                 // $("#planner").append(rowDiv);
@@ -94,19 +109,25 @@
 
             }
 
-                $(".hour-button").on("click", function(){
-                    alert("you clicked the hours button"+$(this).attr("data-houredit"))
-                    console.log(this);
+            $(".hour-button").on("click", function () {
+                // alert("you clicked the hours button"+$(this).attr("data-houredit"));
+                // var buca = $(this).val().trim();
+                // console.log(buca);
+                // console.log($(this));  this doesn't work crbtemp
+                // var plannerEntry = {};
+                plannerEntry.hour = $(this).attr("data-houredit");
+                plannerEntry.entry = $(this).val().trim();
+                console.log($(this).val().trim());
+                // plannerArray.push(plannerEntry);
+            });
 
-                });
 
-                
-                $(".savebtn").on("click", function(){
-                    alert("you clicked the save button"+$(this).attr("data-savebtn"))
-                    console.log(this);
-                })
+            $(".savebtn").on("click", function () {
+                // alert("you clicked the save button"+$(this).attr("data-savebtn"))
+                localStorage.setItem('DayPlanner', JSON.stringify(plannerArray));
+            })
 
-                
+
         });
 
     </script>
