@@ -45,8 +45,8 @@
             // custom code here
             var currentDateAndTime = Date(Date.now());// exp: Fri Oct 25 2019 17:40:56 GMT-0400 (Eastern Daylight Time)
             var currentHour = new Date().getHours();//Current hour in military time
-//testing
-currentHour = 12;
+            //testing
+            // currentHour = 10;
 
             console.log(currentDateAndTime);
             var d = new Date();
@@ -65,30 +65,29 @@ currentHour = 12;
 
 
             var plannerArray = JSON.parse(localStorage.getItem('DayPlanner') || "[]");
-
             var plannerEntry = {};
-            // plannerEntry.hour = workhours[i];
-            // plannerEntry.entry = hoursBtn
 
+            // create 9 elements for planner work hours 9AM through 5PM
             for (var i = 0; i < 9; i++) {
 
                 //create entry in our array with the current hour and blank entry
-                var plannerEntry = {};
                 // plannerEntry.hour = $(this).attr("data-houredit");
                 // plannerEntry.entry = $(this).val().trim();
                 // plannerArray.push(plannerEntry);
-                plannerEntry.hour = workhours[i];
-                plannerEntry.entry = "";
-                plannerArray.push(plannerEntry);
+                // we only create the array once when the program is first run
+                // otherwise we pull from local storage
+                if (plannerArray === undefined) {
+                    plannerEntry.hour = workhours[i];
+                    plannerEntry.entry = "";
+                    plannerArray.push(plannerEntry);
+                }
 
                 var rowDiv = $("<div>");
                 rowDiv.addClass("row");
-                // $("#planner").append(rowDiv);
 
                 var hourDiv = $("<div>");
                 hourDiv.addClass("leftCol");
                 hourDiv.text(workhours[i]);
-                // $("#planner").append(hourDiv);
 
                 // var hourBtn = $("<button>");
                 var hourBtn = $("<input>");
@@ -97,49 +96,43 @@ currentHour = 12;
                 if (currentHour - 9 === i) {
                     hourBtn.addClass("present"); //add class for present hour
 
-                } else if ( currentHour -9 < i) {
+                } else if (currentHour - 9 < i) {
                     hourBtn.addClass("past"); //add class for past hour
-                    
+
                 } else {
                     hourBtn.addClass("future"); //add class for future
                 }
                 hourBtn.attr("data-houredit", workhours[i]);
+                hourBtn.attr("id", workhours[i]);
 
-                hourBtn.text(workhours[i]);
-                // append each hour button to the "#planner" div
-                // $("#planner").append(hourBtn);
-
+                // create save button, add classes, create data attribute to store the work hour
                 var saveBtn = $("<button>");
                 saveBtn.addClass("savebtn fa fa-save");
                 saveBtn.attr("data-savebtn", workhours[i]);
-                // $("#planner").append(saveBtn);
-
+                // first append the 3 elements to our rowDiv, then append to #planner div    
                 rowDiv.append(hourDiv, hourBtn, saveBtn);
                 $("#planner").append(rowDiv);
-
             }
 
             $(".hour-button").on("click", function () {
                 // alert("you clicked the hours button"+$(this).attr("data-houredit"));
-                // var buca = $(this).val().trim();
-                // console.log(buca);
-                // console.log($(this));  this doesn't work crbtemp
-                // var plannerEntry = {};
-                plannerEntry.hour = $(this).attr("data-houredit");
-                plannerEntry.entry = $(this).val().trim();
-                console.log($(this).val().trim());
-                // plannerArray.push(plannerEntry);
             });
 
-
             $(".savebtn").on("click", function () {
-                // alert("you clicked the save button"+$(this).attr("data-savebtn"))
+
+                plannerEntry.hour = $(this).attr("data-savebtn");
+                plannerEntry.entry = $("#" + plannerEntry.hour).val().trim();
+                
+                console.log(plannerEntry.entry);
+                alert("you clicked the save button " + $(this).attr("data-savebtn") +" "+ plannerEntry.hour+" " + plannerEntry.entry)
+                // find the index of the selected hour so we can update local storage
+                let idx = workhours.indexOf(plannerEntry.hour);
+                console.log("idx:"+idx )
+                plannerArray[idx] = plannerEntry;
                 localStorage.setItem('DayPlanner', JSON.stringify(plannerArray));
             })
 
-
         });
-
 
     </script>
     <script src="https://kit.fontawesome.com/55a94f0e16.js" crossorigin="anonymous"></script>
