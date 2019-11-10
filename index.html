@@ -76,7 +76,7 @@
                 // plannerArray.push(plannerEntry);
                 // we only create the array once when the program is first run
                 // otherwise we pull from local storage
-                if (plannerArray === undefined) {
+                if (plannerArray.length === 0) {
                     plannerEntry.hour = workhours[i];
                     plannerEntry.entry = "";
                     plannerArray.push(plannerEntry);
