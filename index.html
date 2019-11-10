@@ -128,7 +128,7 @@
                 // find the index of the selected hour so we can update local storage
                 let idx = workhours.indexOf(plannerEntry.hour);
                 console.log("idx:"+idx )
-                plannerArray[idx] = plannerEntry;
+                plannerArray[idx] = plannerEntry.entry;
                 localStorage.setItem('DayPlanner', JSON.stringify(plannerArray));
             })
 
