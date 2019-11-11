@@ -46,7 +46,7 @@
             var currentDateAndTime = Date(Date.now());// exp: Fri Oct 25 2019 17:40:56 GMT-0400 (Eastern Daylight Time)
             var currentHour = new Date().getHours();//Current hour in military time
             //testing
-            // currentHour = 10;
+            //currentHour = 10;
 
             console.log(currentDateAndTime);
             var d = new Date();
@@ -86,10 +86,10 @@
                     hourBtn.addClass("present"); //add class for present hour
 
                 } else if (currentHour - 9 < i) {
-                    hourBtn.addClass("past"); //add class for past hour
+                    hourBtn.addClass("future"); //add class for future hour
 
                 } else {
-                    hourBtn.addClass("future"); //add class for future
+                    hourBtn.addClass("past"); //add class for past
                 }
                 hourBtn.attr("data-houredit", workhours[i]);
                 hourBtn.attr("id", workhours[i]);
