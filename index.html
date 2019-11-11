@@ -80,6 +80,7 @@
                     plannerEntry.hour = workhours[i];
                     plannerEntry.entry = "";
                     plannerArray.push(plannerEntry);
+                    console.log("this is the beginning " +plannerArray);
                 }
 
                 var rowDiv = $("<div>");
@@ -91,7 +92,7 @@
 
                 // var hourBtn = $("<button>");
                 var hourBtn = $("<input>");
-                console.log(workhours[i]);
+                // console.log(workhours[i]);
                 hourBtn.addClass("hour-button hours hour-button-color");
                 if (currentHour - 9 === i) {
                     hourBtn.addClass("present"); //add class for present hour
@@ -119,16 +120,18 @@
             });
 
             $(".savebtn").on("click", function () {
-
+                var plannerEntry = {};
                 plannerEntry.hour = $(this).attr("data-savebtn");
                 plannerEntry.entry = $("#" + plannerEntry.hour).val().trim();
                 
-                console.log(plannerEntry.entry);
+                // console.log(plannerEntry.entry);
                 alert("you clicked the save button " + $(this).attr("data-savebtn") +" "+ plannerEntry.hour+" " + plannerEntry.entry)
                 // find the index of the selected hour so we can update local storage
                 let idx = workhours.indexOf(plannerEntry.hour);
-                console.log("idx:"+idx )
+                // console.log("idx:"+idx )
+
                 plannerArray[idx] = plannerEntry.entry;
+                console.log(plannerArray[idx]);
                 localStorage.setItem('DayPlanner', JSON.stringify(plannerArray));
             })
 
